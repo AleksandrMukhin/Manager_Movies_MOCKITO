@@ -53,4 +53,51 @@ public class ManagerFilmsTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldLessThanLimit() {
+        ManagerFilms movie = new ManagerFilms(8);
+
+        movie.add(film2);
+        movie.add(film3);
+        movie.add(film4);
+        movie.add(film5);
+
+        DescriptionFilms[] expected = {film5, film4, film3, film2};
+        DescriptionFilms[] actual = movie.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldMoreLimit() {
+        ManagerFilms movie = new ManagerFilms(2);
+
+        movie.add(film1);
+        movie.add(film2);
+        movie.add(film3);
+        movie.add(film4);
+        movie.add(film5);
+
+        DescriptionFilms[] expected = {film5, film4};
+        DescriptionFilms[] actual = movie.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldMinLimit() {
+        ManagerFilms movie = new ManagerFilms(0);
+
+        movie.add(film1);
+        movie.add(film2);
+        movie.add(film3);
+        movie.add(film4);
+        movie.add(film5);
+
+        DescriptionFilms[] expected = {};
+        DescriptionFilms[] actual = movie.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
